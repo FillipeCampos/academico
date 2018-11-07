@@ -14,13 +14,13 @@ class TabelaTurmaAlunos extends Migration
     public function up()
     {
         Schema::create('turma_alunos', function (Blueprint $table) {
-          $table->increments('id');
-          $table->integer('turma_id')->unsigned();
-          $table->integer('aluno_id')->unsigned();
+            $table->increments('id');
+            $table->integer('turma_id')->unsigned();
+            $table->integer('usuario_id')->unsigned();
 
           
-          $table->foreign('turma_id')->references('id')->on('turma');
-          $table->foreign('aluno_id')->references('id')->on('aluno');
+            $table->foreign('turma_id')->references('id')->on('turma');
+            $table->foreign('usuario_id')->references('id')->on('usuario');
         });
     }
 

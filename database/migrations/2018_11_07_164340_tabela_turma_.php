@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TabelaProfessor extends Migration
+class TabelaTurma extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class TabelaProfessor extends Migration
      */
     public function up()
     {
-        Schema::create('professor', function (Blueprint $table) {
+        Schema::create('turma', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('matricula');
+            $table->integer('disciplina_id')->unsigned();
             $table->integer('usuario_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('usuario_id')->references('id')->on('users');
-
-
-            
+            $table->foreign('disciplina_id')->references('id')->on('disciplina');
+            $table->foreign('usuario_id')->references('id')->on('usuario'); 
         });
     }
 
@@ -33,6 +31,6 @@ class TabelaProfessor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professor');
+        Schema::dropIfExists('turma');
     }
 }

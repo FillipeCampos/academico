@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriaTabelaAluno extends Migration
+class TabelaUsuario extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CriaTabelaAluno extends Migration
      */
     public function up()
     {
-        Schema::create('aluno', function (Blueprint $table) {
+        Schema::create('usuario', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            
-        
-            $table->foreign('usuario_id')->references('id')->on('users'); 
+            $table->string('nome');
+            $table->string('email');
+            $table->string('senha');
+            $table->string('tipo');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CriaTabelaAluno extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aluno');
+        Schema::dropIfExists('usuario');
     }
 }
