@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('cadastrar', 'Academico_Controller@cadastrar');
+Route::get('login', 'Academico_Controller@login');
+Route::get('cadastroNota', 'Academico_Controller@cadastrar_avaliacao');

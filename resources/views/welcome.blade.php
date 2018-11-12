@@ -1,29 +1,58 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="Colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
     <title>Academico</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+            <link href="{{ asset('css/linearicons.css') }}" rel="stylesheet">=
+            <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet">        
+            <link href="{{ asset('css/nice-select.css') }}" rel="stylesheet">  
 
-    <!-- Required meta tags -->
+			<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+			<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}" >
+            <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}" >
+            <link rel="stylesheet" href="{{ asset('css/elegant-fonts.css') }}"   >
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <!-- Required meta tags 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">-->
 
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
+    <!-- FontAwesome CSS 
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" > -->
 
-    <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="{{ asset('css/elegant-fonts.css') }}"   >
+    <!-- ElegantFonts CSS 
+    <link rel="stylesheet" href="{{ asset('css/elegant-fonts.css') }}"   > -->
 
-    <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}" >
+    <!-- themify-icons CSS 
+    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}" > -->
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}" >
+    <!-- Swiper CSS 
+    <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}" > -->
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
+    <!-- Styles 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" >  -->
 </head>
 <body>
     <div class="hero-content">
@@ -51,14 +80,89 @@
 
                             <div class="header-bar-menu">
                                 <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
-                                    <li><a href="#">Register</a></li>
-                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#cadastroModal" data-toggle="modal">Cadastro</a></li>
+                                    <li><a href="#loginModal" data-toggle="modal">Login</a></li>
                                 </ul>
                             </div><!-- .header-bar-menu -->
                         </div><!-- .col -->
-                    </div><!-- .row -->
-                </div><!-- .container-fluid -->
+                    </div><!-- .row -->               
+                </div><!-- .container-fluid -->                
             </div><!-- .top-header-bar -->
+
+<!-- Area Cadastro -->
+<div id="cadastroModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h3>Cadastro</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="GET" action="cadastrar">
+                    {{ csrf_field()  }}
+                    <div class="form-group">
+                   <!--     <a href="" class="float-right">New user?</a>  -->
+                        <label for="campo_email">Nome</label>
+                        <input type="text" class="form-control form-control-lg" name="campo_nome" id="campo_nome" required="">
+                    </div>
+                    <div class="form-group"> 
+                        <label for="campo_email">Email</label>
+                        <input type="text" class="form-control form-control-lg" name="campo_email" id="campo_email" required="">   
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control form-control-lg" id="campo_senha" required="" name="campo_senha">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo do usuário</label>
+                        <input type="text" class="form-control form-control-lg" id="campo_tipo_usuario" required="" name="campo_tipo_usuario">
+                    </div>
+
+                    <div class="form-group py-4">
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                        <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+     </div>
+ </div>
+<!-- Fim Area Cadastro -->
+
+
+<!-- Area Login -->
+   <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h3>Login</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="GET" action="login">
+                   {{ csrf_field()  }}
+                    <div class="form-group">
+                   <!--     <a href="" class="float-right">New user?</a>  -->
+                        <label for="campo_email">Email</label>
+                        <input type="text" class="form-control form-control-lg" name="campo_email" id="campo_email" required="">
+                   <!--     <div class="invalid-feedback">Oops, you missed this one.</div>  -->
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control form-control-lg" id="campo_senha" required="" name="campo_senha">
+                    </div>
+
+                    <div class="form-group py-4">
+                        <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+     </div>
+ </div>
+<!-- Fim Area Login -->
+
 
             <div class="nav-bar">
                 <div class="container">
@@ -75,7 +179,7 @@
                                     <li class="current-menu-item"><a href="index.html">Home</a></li>
                                     <li><a href="#">About</a></li>
                                     <li><a href="#">Courses</a></li>
-                                    <li><a href="#">blog</a></li>
+                                    <li><a href="#">blog</a></li>                                 
                                     <li><a href="#">Contact</a></li>
                                 </ul>
 
@@ -96,7 +200,8 @@
             </div><!-- .nav-bar -->
         </header><!-- .site-header -->
 
-        <div class="hero-content-overlay">
+
+   <div class="hero-content-overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -919,11 +1024,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div><!-- .footer-bar -->
     </footer><!-- .site-footer -->
     
-<script type='text/javascript' src="{{ asset('js/jquery.js') }}"></script>
+<!--<script type='text/javascript' src="{{ asset('js/jquery.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/swiper.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/jquery.collapsible.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('js/custom.js') }}" ></script>
+<script type='text/javascript' src="{{ asset('js/custom.js') }}" ></script> -->
+<script src="{{ asset('js/jquery-3.3.1.js') }}"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script> 
+<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('js/jquery.sticky.js') }}"></script>
+<script src="{{ asset('js/parallax.min.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>  
+<script src="{{ asset('js/waypoints.min.js') }}"></script>
+<script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/requisicao.js') }}"></script>
 
 </body>
 </html>
