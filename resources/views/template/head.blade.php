@@ -1,4 +1,4 @@
-<title>Academico</title>
+<title>@yield('titulo')</title>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
