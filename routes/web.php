@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/test',function (){
     return view('template.app');
 });
+
+Route::get('/test/home', function (){
+    return view('funcionario');
+});
