@@ -47,7 +47,8 @@ class Academico_Controller extends Controller
           break; 
 
           case 'Professor':
-            return view('professor');  
+            $av_regular = ConfAvRegular::first();
+            return view('professor')->with('av_regular', $av_regular);
           break;  
 
           case 'Funcionario' :

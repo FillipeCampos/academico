@@ -174,8 +174,9 @@ a:hover, a:active {
 # Nav Bar
 --------------------------------*/
 .nav-bar {
-    padding: 20px 0;
+    padding: 0 0;
     background: #666666;
+    font-size: 90%;
 }
 
 /*

@@ -1,5 +1,3 @@
-<h2>Área do Funcionário</h2>
-
 @extends('template.app')
 
 @section('title')
@@ -14,7 +12,7 @@ Professor
 @endsection
 
 
-@section('main-content')
+@section('conteudo-principal')
 <div id="areaVerDisciplina" class="card card-outline-secondary" style="width: 18rem;margin-left:510px;margin-top:30px;">
     <div class="card-header">
         <h3 class="mb-0">Lista Disciplina</h3>
