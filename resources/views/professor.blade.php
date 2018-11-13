@@ -3,7 +3,7 @@
 @extends('template.app')
 
 @section('title')
-Funcionário
+Professor
 @endsection
 
 @section('nav-menu')
@@ -134,11 +134,9 @@ Funcionário
            for(var x=0; x<msg.medicos.length;x++) {
                $("#mdd").append('<h5>' + msg.medicos[x].nome + '</h5>');
            } 
-
        }
    }); 
  }
-
   function excluir() {
    //do stuff    
    $.ajax({
@@ -146,12 +144,10 @@ Funcionário
        url: "public/empresa/listarMd/register",
        data: {idFuncionario:id},
        success: function( msg ) {        
-
            $("#mdd").append('<h5>' + 'Médico(s):' + '</h5>' + '</br>');
            for(var x=0; x<msg.medicos.length;x++) {
                $("#mdd").append('<h5>' + msg.medicos[x].nome + '</h5>');
            } 
-
        }
    }); 
 }
