@@ -40,7 +40,8 @@ class Academico_Controller extends Controller
 
        $pesquisarUsuario = Usuario::where('email',$email)->where('senha', $senha)->first();
        $tipoUsuario = $pesquisarUsuario->tipo;
-
+       
+       $av_regular = ConfAvRegular::first();
        switch($tipoUsuario){
           case 'Aluno':
             return view('aluno'); 
@@ -52,7 +53,7 @@ class Academico_Controller extends Controller
           break;  
 
           case 'Funcionario' :
-            return view('funcionario'); 
+            return view('funcionario')->with('av_regular', $av_regular); 
           break; 
      }
     

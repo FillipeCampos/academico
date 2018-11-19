@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('cadastrar', 'Academico_Controller@cadastrar');
 Route::get('login', 'Academico_Controller@login');
 Route::get('cadastroNota', 'Academico_Controller@cadastrar_avaliacao');
+
+Route::post('funcionario/configuracao/salvar', 'funcionarioController@saveConfiguracao');

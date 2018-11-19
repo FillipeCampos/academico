@@ -274,7 +274,7 @@ a:hover, a:active {
     left: -320px;
     z-index: 9999;
     width: 320px;
-    max-width: calc(100% - 120px);
+    /*max-width: calc(100% - 120px);*/
     height: 100%;
     overflow-x: scroll;
     padding: 30px 15px;

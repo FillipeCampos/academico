@@ -1,5 +1,3 @@
-<h2>Área do Funcionário</h2>
-
 @extends('template.app')
 
 @section('titulo')
@@ -7,91 +5,59 @@ Funcionário
 @endsection
 
 @section('nav-menu')
-<li class=""><a href="index.html">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Courses</a></li>
-<li><a href="#">blog</a></li>
-<li><a href="#">Contact</a></li>
+<li class=""><a href="/">Home</a></li>
+<li><a href="#">Manter Usuários</a></li>
+<li><a href="#">Disciplinas</a></li>
+<li><a href="#">Turmas</a></li>
+<li><a href="#">Configurações</a></li>
 @endsection
 
 @section('conteudo-principal')
-<div class="icon-boxes">
-        <div class="container-fluid">
-            <div class="flex flex-wrap align-items-stretch">
-                <div class="icon-box">
-                    <div class="icon">
-                        <span class="ti-user"></span>
-                    </div><!-- .icon -->
-
-                    <header class="entry-header">
-                        <h2 class="entry-title">Manter Professores</h2>
-                    </header><!-- .entry-header -->
-
-                    <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    </div><!-- .entry-content -->
-
-                    <footer class="entry-footer read-more">
-                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
-                </div><!-- .icon-box -->
-
-                <div class="icon-box">
-                    <div class="icon">
-                        <span class="ti-folder"></span>
-                    </div><!-- .icon -->
-
-                    <header class="entry-header">
-                        <h2 class="entry-title">Manter Alunos</h2>
-                    </header><!-- .entry-header -->
-
-                    <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    </div><!-- .entry-content -->
-
-                    <footer class="entry-footer read-more">
-                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
-                </div><!-- .icon-box -->
-
-                <div class="icon-box">
-                    <div class="icon">
-                        <span class="ti-book"></span>
-                    </div><!-- .icon -->
-
-                    <header class="entry-header">
-                        <h2 class="entry-title">Disciplinas e Turmas</h2>
-                    </header><!-- .entry-header -->
-
-                    <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    </div><!-- .entry-content -->
-
-                    <footer class="entry-footer read-more">
-                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
-                </div><!-- .icon-box -->
-
-                <div class="icon-box">
-                    <div class="icon">
-                        <span class="ti-settings"></span>
-                    </div><!-- .icon -->
-
-                    <header class="entry-header">
-                        <h2 class="entry-title">Configurações</h2>
-                    </header><!-- .entry-header -->
-
-                    <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    </div><!-- .entry-content -->
-
-                    <footer class="entry-footer read-more">
-                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
-                </div><!-- .icon-box -->
-            </div><!-- .row -->
-        </div><!-- .container-fluid -->
-    </div><!-- .icon-boxes -->
+<!-- scripts personalizados-->
+<div class="container">
+  <div class="row">
+    <div class="card col-sm-12">
+      <div class="card-header">
+          Configurações
+      </div>
+      <div class="card-body">
+        <form action="/funcionario/configuracao/salvar" method="POST">
+          {{ csrf_field()  }}
+          <div class="row">
+            <div class="form-group col-sm-4">
+                  <label for="qtdMinAvaliacao">Quantidade Mínima de Avaliações</label>
+            <input type="text" class="form-control" name="qtdMinAvaliacao" id="qtdMinAvaliacao" value="{{isset($av_regular) ? $av_regular->qtd_provas_min : 0}}">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="qtdMaxAvaliacao">Quantidade Máxima de Avaliações</label>
+              <input type="text" class="form-control" name="qtdMaxAvaliacao" id="qtdMaxAvaliacao" value="{{isset($av_regular) ? $av_regular->qtd_provas_max : 0}}">
+            </div>
+            <div class="form-group col-sm-4">
+              Pode modificar os Pesos?
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="modificaPeso" id="modificaPeso1" value="1" {{isset($av_regular) ? (($av_regular->peso_modificavel==1) ? "checked" : "") : "checked"}}>
+                  <label class="form-check-label" for="modificaPeso1">
+                    Sim
+                  </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="modificaPeso" id="modificaPeso0" value="0" {{isset($av_regular) ? (($av_regular->peso_modificavel==0) ? "checked" : "") : ""}}>
+                  <label class="form-check-label" for="modificaPeso0">
+                    Não
+                  </label>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="align-self-end">
+              <button type="submit" class="btn btn-primary">Alterar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('scripts')
