@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 col-lg-6 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
                 <div class="header-bar-email d-flex align-items-center">
-                    <i class="fa fa-envelope"></i><a href="#">{{isset($user) ? $user->nome(): ""}}</a>
+                    <i class="fa fa-envelope"></i><a href="#">{{isset($user) ? $user->nome : ""}}</a>
                 </div><!-- .header-bar-email -->
 
             </div><!-- .col -->

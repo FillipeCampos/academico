@@ -53,7 +53,7 @@ class Academico_Controller extends Controller
           break;  
 
           case 'Funcionario' :
-            return view('funcionario')->with('av_regular', $av_regular); 
+            return redirect()->route('funcionario');
           break; 
      }
     

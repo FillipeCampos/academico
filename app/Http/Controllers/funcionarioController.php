@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ConfAvRegular;
+use App\ConfAvFinal;
+use App\Disciplina;
 
 class funcionarioController extends Controller
 {
-    public function saveConfiguracao(Request $requisicao)
+    public static function index(){
+        $av_regular = ConfAvRegular::first();
+        $av_final = ConfAvFinal::first();
+        $disciplinas = Disciplina::all();
+        return view('funcionario',compact('av_regular','disciplinas','av_final'));
+    }
+
+    public function saveConfiguracaoAvalRegular(Request $requisicao)
     {
        $qtdMaxAval = $requisicao->input('qtdMaxAvaliacao');    
        $qtdMinAval = $requisicao->input('qtdMinAvaliacao');
@@ -19,7 +28,21 @@ class funcionarioController extends Controller
        $confAvalRegular->peso_modificavel = $isPesoModificavel;
        $confAvalRegular->save();  
 
-       $av_regular = ConfAvRegular::first();
-       return view('funcionario')->with('av_regular', $av_regular);  
+       return redirect()->route('funcionario');
+    }
+
+    public function saveConfiguracaoAvalFinal(Request $requisicao){
+
+        $peso_regular = $requisicao->input('pesoRegular');
+        $peso_final = $requisicao->input('pesoFinal');
+
+        $confAvFinal = ConfAvFinal::first();
+        if($confAvFinal == null)  $confAvFinal = new ConfAvFinal;
+        
+        $confAvFinal->peso_nota_regular = $peso_regular;
+        $confAvFinal->peso_nota_final = $peso_final;
+        $confAvFinal->save();
+
+        return redirect()->route('funcionario');
     }
 }

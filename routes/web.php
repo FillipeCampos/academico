@@ -19,4 +19,11 @@ Route::get('cadastrar', 'Academico_Controller@cadastrar');
 Route::get('login', 'Academico_Controller@login');
 Route::get('cadastroNota', 'Academico_Controller@cadastrar_avaliacao');
 
-Route::post('funcionario/configuracao/salvar', 'funcionarioController@saveConfiguracao');
+
+Route::prefix('funcionario')->group(function () {
+    Route::get('','funcionarioController@index')->name('funcionario');
+    Route::prefix('/configuracao')->group(function(){
+        Route::post('avaliacaoRegular/salvar', 'funcionarioController@saveConfiguracaoAvalRegular')->name('saveAvalRegularConf');
+        Route::post('avaliacaoFinal/salvar', 'funcionarioController@saveConfiguracaoAvalFinal')->name('saveAvalFinalConf');
+    });
+});
