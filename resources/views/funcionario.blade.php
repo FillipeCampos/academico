@@ -21,24 +21,35 @@ Funcionário
           Disciplinas
       </div>
       <div class="card-body">
+      
       @if (count($disciplinas) > 0)
-      @foreach ($disciplinas as $disciplina)
-          
-      @endforeach
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">{{$disciplina->nome}}</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+       <div class="row">
+        @foreach ($disciplinas as $disciplina)
+          <div class="col-sm-4 my-2">
+            <div class="card border-primary">
+              <div class="card-body">
+                <h4 class="card-title">{{$disciplina->nome}}</h4>
+                <div class="row">
+                  <div class="col-sm-5">
+                      <button type="button" class="btn btn-sm btn-primary">Adicionar Turma</button>
+                  </div>
+                  <div class="col-sm-5 ml-2">
+                    <a href="{{ route('delDisciplina',$disciplina->id) }}"><button type="button" class="btn btn-sm btn-danger">Remover Disciplina</button></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        @endforeach
+      </div>
       @else
         <div class="alert alert-primary" role="alert" style="text-align: center;">
           Nenhuma Disciplina Cadastrada!
         </div>
       @endif
+        <div class="row justify-content-end">
+            <button type="button" class="btn-sm btn-success mt-3" data-toggle="modal" data-target="#modalAddDisciplina">Adicionar Disciplina</button>
+        </div>
       </div>
     </div>
   </div>
@@ -114,6 +125,33 @@ Funcionário
     </div>
   </div>
 </div>
+
+
+<!--Modal Add Disciplina-->
+  <!-- Modal -->
+  <div class="modal fade" id="modalAddDisciplina" tabindex="-1" role="dialog" aria-labelledby="modalAddDisciplinaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalAddDisciplinaTitle">Adicionar Disciplina</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="form-group" action="{{route('addDisciplina')}}" method="POST">
+          <div class="modal-body">
+              {{ csrf_field()  }}
+              <label for="nomeDisciplina">Nome</label>
+              <input name="nomeDisciplina" id="nomeDisciplina" type="text" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @push('scripts')

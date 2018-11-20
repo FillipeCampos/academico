@@ -26,4 +26,6 @@ Route::prefix('funcionario')->group(function () {
         Route::post('avaliacaoRegular/salvar', 'funcionarioController@saveConfiguracaoAvalRegular')->name('saveAvalRegularConf');
         Route::post('avaliacaoFinal/salvar', 'funcionarioController@saveConfiguracaoAvalFinal')->name('saveAvalFinalConf');
     });
+    Route::post('Disciplinas/Add','funcionarioController@addDisciplina')->name('addDisciplina');
+    Route::get('Disciplinas/Del/{id}','funcionarioController@delDisciplina')->name('delDisciplina');
 });

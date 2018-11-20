@@ -12,7 +12,7 @@ class funcionarioController extends Controller
     public static function index(){
         $av_regular = ConfAvRegular::first();
         $av_final = ConfAvFinal::first();
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::all()->sortBy('nome');
         return view('funcionario',compact('av_regular','disciplinas','av_final'));
     }
 
@@ -43,6 +43,22 @@ class funcionarioController extends Controller
         $confAvFinal->peso_nota_final = $peso_final;
         $confAvFinal->save();
 
+        return redirect()->route('funcionario');
+    }
+
+    public function addDisciplina(Request $requisicao){
+        $nome =  $requisicao->input('nomeDisciplina');
+        $disciplina = new Disciplina;
+        if(!($disciplina->check_if_exists($nome))){
+            $disciplina->nome = $nome;
+            $disciplina->save();
+        }
+        return redirect()->route('funcionario');
+    }
+
+    public function delDisciplina(Request $requisicao, $id){
+        $disciplina = Disciplina::find($id);
+        $disciplina->delete();
         return redirect()->route('funcionario');
     }
 }
