@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 use App\Usuario;
 use App\ConfAvFinal;
 use App\ConfAvRegular;
+use App\Avaliacao;
+use App\Notas;
+use App\Turma;
+use Illuminate\Support\Facades\Auth;
 
 class Academico_Controller extends Controller
 {
-    //
+    //Notas 
     public function index()
     {
         return view('master');
@@ -38,18 +42,17 @@ class Academico_Controller extends Controller
        $email = $requisicao->input('campo_email');
        $senha = $requisicao->input('campo_senha');
 
-       $pesquisarUsuario = Usuario::where('email',$email)->where('senha', $senha)->first();
-       $tipoUsuario = $pesquisarUsuario->tipo;
-       
-       $av_regular = ConfAvRegular::first();
+       $usuario = Usuario::where('email',$email)->where('senha', $senha)->first();
+       $tipoUsuario = $usuario->tipo;
+    
+   //    Auth::loginUsingId($usuario->id, TRUE);
        switch($tipoUsuario){
           case 'Aluno':
             return view('aluno'); 
           break; 
 
           case 'Professor':
-            $av_regular = ConfAvRegular::first();
-            return view('professor')->with('av_regular', $av_regular);
+          return redirect('/professor');
           break;  
 
           case 'Funcionario' :
@@ -59,18 +62,42 @@ class Academico_Controller extends Controller
     
     }
 
-    public function cadastrar_avaliacao()
+    public function cadastrar_avaliacao(Request $requisicao)
     {
-        $av_regular = ConfAvRegular::first();
-        return view('professor')->with('av_regular', $av_regular); 
+       $qtd_notas_min = $requisicao->input('qtd_provas_min');   
+       $turma = $requisicao->input('turmaselecionada');
+
+       for($i=1; $i <= $qtd_notas_min; $i++) {
+            //Mapeia e pega os campos do formulário
+            $campo_nota_form = 'campo_nota'.$i;
+            $campo_nota = $requisicao->input($campo_nota_form);
+
+            $campo_peso_form = 'campo_peso'.$i;
+            $campo_peso =  $requisicao->input($campo_peso_form);
+
+            $avaliacao = new Avaliacao;
+            $avaliacao->peso = $campo_peso;
+            $avaliacao->turma_id = $turma;
+            $avaliacao->save();
+
+            $notas = new Notas;
+            $notas->nota = $campo_nota;
+            $notas->turma_aluno_id = 1;
+            $notas->avaliacao_id = $i;
+            $notas->save();
+        }  
+        $requisicao->session()->flash('sucesso', 'Dados inseridos com sucesso!');  
+        return redirect('/professor');
     }
 
 }
 
-/*
+/* 
 ---------------------------------------
     EXEMPLO ADICIONAR
 ---------------------------------------    
+   /* $av_regular = ConfAvRegular::first();
+        return view('professor')->with('av_regular', $av_regular);     
 */
 
 /*public function adicionar(Request $requisicao)

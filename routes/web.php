@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::get('cadastrar', 'Academico_Controller@cadastrar');
 Route::get('login', 'Academico_Controller@login');
+Route::get('logar', 'Academico_Controller@login');
 Route::get('cadastroNota', 'Academico_Controller@cadastrar_avaliacao');
-
 
 Route::prefix('funcionario')->group(function () {
     Route::get('','funcionarioController@index')->name('funcionario');
@@ -29,3 +29,6 @@ Route::prefix('funcionario')->group(function () {
     Route::post('Disciplinas/Add','funcionarioController@addDisciplina')->name('addDisciplina');
     Route::get('Disciplinas/Del/{id}','funcionarioController@delDisciplina')->name('delDisciplina');
 });
+Route::get('professor', 'Professor@index');
+Route::get('listarDisiciplinas', 'Professor@listarDisciplinas');
+Route::get('planoEnsino', 'Professor@definirPlanoEnsino');

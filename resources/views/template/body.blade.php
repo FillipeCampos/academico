@@ -1,6 +1,7 @@
     <header class="site-header">
         @include('template.header')            
-    </header><!-- .site-header -->
+    </header><!-- .site-header -->''
+
         @yield('conteudo-principal')
     <div class="clients-logo">
         <div class="container">
