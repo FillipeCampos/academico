@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ConfAvRegular;
 use App\ConfAvFinal;
 use App\Disciplina;
+use App\Usuario;
 
 class funcionarioController extends Controller
 {
@@ -13,7 +14,8 @@ class funcionarioController extends Controller
         $av_regular = ConfAvRegular::first();
         $av_final = ConfAvFinal::first();
         $disciplinas = Disciplina::all()->sortBy('nome');
-        return view('funcionario',compact('av_regular','disciplinas','av_final'));
+        $usuarios = Usuario::all()->sortBy('tipo');
+        return view('funcionario',compact('av_regular','disciplinas','av_final','usuarios'));
     }
 
     public function saveConfiguracaoAvalRegular(Request $requisicao)
