@@ -82,6 +82,7 @@
                                 <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
                                     <li><a href="#cadastroModal" data-toggle="modal">Cadastro</a></li>
                                     <li><a href="#loginModal" data-toggle="modal">Login</a></li>
+                                <!--     <li><a href="#loginModal" data-toggle="modal">Login</a></li> -->
                                 </ul>
                             </div><!-- .header-bar-menu -->
                         </div><!-- .col -->
@@ -139,17 +140,17 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="GET" action="login">
+                <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="GET" action="logar">
                    {{ csrf_field()  }}
                     <div class="form-group">
                    <!--     <a href="" class="float-right">New user?</a>  -->
                         <label for="campo_email">Email</label>
-                        <input type="text" class="form-control form-control-lg" name="campo_email" id="campo_email" required="">
+                        <input type="text" value="jimferreira@tim.com" class="form-control form-control-lg" name="campo_email" id="campo_email" required="">
                    <!--     <div class="invalid-feedback">Oops, you missed this one.</div>  -->
                     </div>
                     <div class="form-group">
                         <label>Senha</label>
-                        <input type="password" class="form-control form-control-lg" id="campo_senha" required="" name="campo_senha">
+                        <input type="password"  value="3456" class="form-control form-control-lg" id="campo_senha" required="" name="campo_senha">
                     </div>
 
                     <div class="form-group py-4">

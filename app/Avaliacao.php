@@ -13,7 +13,7 @@ class Avaliacao extends Model
         'turma_id'
       ];
   
-      protected $table = 'turma_alunos';
+      protected $table = 'avaliacao';
 
       public function turma()
       {
