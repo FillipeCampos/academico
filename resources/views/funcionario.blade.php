@@ -149,6 +149,32 @@ Funcionário
                         </label>
                     </div>
                   </div>
+
+
+                    <div class="form-group col-sm-4">
+                    Quantidade de Avaliações:
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="qtdAva" id="qtdAva1" value="1" {{isset($av_regular) ? (($av_regular->qtd_avaliacao_variavel==1) ? "checked" : "") : "checked"}}>
+                        <label class="form-check-label" for="qtdAva1">
+                          Variável       
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="qtdAva" id="qtdAva0" value="0" {{isset($av_regular) ? (($av_regular->qtd_avaliacao_variavel==0) ? "checked" : "") : ""}}>
+                        <label class="form-check-label" for="qtdAva0">
+                          Fixa
+                        </label>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
                 </div>
                 <div class="row justify-content-end">
                   <div class="align-self-end">

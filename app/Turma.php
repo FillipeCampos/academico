@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Disciplina;
+use App\Usuario;
+use App\Avaliacao;
 
 class Turma extends Model
 {

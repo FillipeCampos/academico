@@ -30,5 +30,6 @@ Route::prefix('funcionario')->group(function () {
     Route::get('Disciplinas/Del/{id}','funcionarioController@delDisciplina')->name('delDisciplina');
 });
 Route::get('professor', 'Professor@index');
+Route::get('gerenciarTurmas/{id}', 'Professor@gerenciarTurma');
 Route::get('listarDisiciplinas', 'Professor@listarDisciplinas');
 Route::get('planoEnsino', 'Professor@definirPlanoEnsino');

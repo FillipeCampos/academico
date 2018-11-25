@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Turma;
 
 class Disciplina extends Model
 {
@@ -14,7 +15,7 @@ class Disciplina extends Model
   
       protected $table = 'disciplina';
 
-      public function turma()
+      public function turmas()
       {
         return $this->hasMany(Turma::class, 'disciplina_id');
       }

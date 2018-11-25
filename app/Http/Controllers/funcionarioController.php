@@ -23,11 +23,15 @@ class funcionarioController extends Controller
        $qtdMaxAval = $requisicao->input('qtdMaxAvaliacao');    
        $qtdMinAval = $requisicao->input('qtdMinAvaliacao');
        $isPesoModificavel = $requisicao->input('modificaPeso');
+       $qtdAvaliacao = $requisicao->input('qtdAva');
+
        
        $confAvalRegular = ConfAvRegular::first();
        $confAvalRegular->qtd_provas_max = $qtdMaxAval;
        $confAvalRegular->qtd_provas_min = $qtdMinAval;
        $confAvalRegular->peso_modificavel = $isPesoModificavel;
+       $confAvalRegular->qtd_avaliacao_variavel = $qtdAvaliacao;
+
        $confAvalRegular->save();  
 
        return redirect()->route('funcionario');
