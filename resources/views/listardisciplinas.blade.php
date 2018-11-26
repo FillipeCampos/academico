@@ -11,7 +11,6 @@ Professor
 <li><a  href="{{url('/gerenciarTurmas')}}">Gerenciar Turma</a></li>
 @endsection
 
-
 @section('conteudo-principal')
   <div class="card" style="width: 18rem;">   
   @foreach($disciplinas as $disciplina)

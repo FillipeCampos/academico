@@ -11,11 +11,13 @@ use App\Usuario;
 class funcionarioController extends Controller
 {
     public static function index(){
+        $conf['regular'] = false;
+        $conf['final'] = false;
         $av_regular = ConfAvRegular::first();
         $av_final = ConfAvFinal::first();
         $disciplinas = Disciplina::all()->sortBy('nome');
         $usuarios = Usuario::all()->sortBy('tipo');
-        return view('funcionario',compact('av_regular','disciplinas','av_final','usuarios'));
+        return view('funcionario',compact('av_regular','disciplinas','av_final','usuarios','conf'));
     }
 
     public function saveConfiguracaoAvalRegular(Request $requisicao)

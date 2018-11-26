@@ -117,16 +117,13 @@ Funcionário
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-aval-reg-tab" data-toggle="tab" href="#nav-aval-reg" role="tab" aria-controls="nav-aval-reg" aria-selected="true">Avaliação Regular</a>
-            @if($conf['final']) <a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a> @endif
+            @if($temFinal)) <a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a> @endif
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-         @if($conf['regular']) 
-           @include('avaliacao_regular_qtd_variavel')
-         @else
-           @include('avaliacao_regular_qtd_fixo')
-         @endif
-         @if($conf['final']) @include('avaliacao_final_conf') @endif
+      
+           @include('{{tipoAvaliacao}}')
+           {{includeAvaliacaoFinal}}
         </div>
       </div>
     </div>
