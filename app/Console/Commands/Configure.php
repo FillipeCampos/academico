@@ -46,7 +46,8 @@ class Configure extends Command
     {
         $qtd = $this->argument('qtd');
         $temFinal = $this->argument('final') == 's';
-        $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixa' : 'avaliacao_regular_qtd_variavel';
+        $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixa' : 'avaliacao_regular_qtd_variavel';  
+        $this->controller($qtd);
         
         $modelTemplate = str_replace(
             ['{{tipoAvaliacao}}'],
@@ -71,6 +72,25 @@ class Configure extends Command
     protected function getStub($type)
     {
         return file_get_contents(resource_path("stubs/$type.stub"));
+    }
+
+    protected function controller($name)
+    {
+        $controllerTemplate = str_replace(
+           [
+            '{{modelName}}',
+            '{{modelNamePluralLowerCase}}',
+            '{{modelNameSingularLowerCase}}'
+           ],
+           [
+            $name,
+            strtolower(str_plural($name)),
+            strtolower($name)
+           ],
+        $this->getStub('Controller')
+        );
+
+      file_put_contents(app_path("/Http/Controllers/{$name}Controller.php"), $controllerTemplate);
     }
 
 }
