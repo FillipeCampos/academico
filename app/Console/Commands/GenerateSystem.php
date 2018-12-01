@@ -48,9 +48,21 @@ class GenerateSystem extends Command
      */
     public function handle()
     {
+        //Nome da nova pasta a ser criada
         $name = $this->ask('Qual o nome da pasta?');
         $dst= dirname(base_path('')). DIRECTORY_SEPARATOR .$name;
         $this->copy_paths($dst);
+
+        //Definindo Quantidade Fixa ou Variel de Avaliações
+        $fixa_ou_variavel = $this->choice('Quantidade de Avaliações Fixas ou Variáveis ?', ['Fixa', 'Variável']);
+        $qtd = ($fixa_ou_variavel == 'Fixa') ? 1 : 2;
+        //Definir se há avaliação final ou não
+        $has_final = $this->choice('Existe Avaliação Final ?', ['Sim', 'Não']);
+        $final = ($has_final == 'Sim') ? 's' : 'n'; 
+
+        $this->call('config:avaliacao', [
+            '--qtd' => $qtd, '--final' => $final
+        ]);
     }
 
     public function copy_paths($dest){
