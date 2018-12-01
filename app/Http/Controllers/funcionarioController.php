@@ -39,6 +39,23 @@ class funcionarioController extends Controller
        return redirect()->route('funcionario');
     }
 
+    public function saveConfiguracaoAvalRegularFixa(Request $requisicao)
+    {
+           
+       $qtdMaxAval = $qtdMinAval = $requisicao->input('qtdMinAvaliacao');
+       $isPesoModificavel = $requisicao->input('modificaPeso');
+       
+       $confAvalRegular = ConfAvRegular::first();
+       $confAvalRegular->qtd_provas_max = $qtdMaxAval;
+       $confAvalRegular->qtd_provas_min = $qtdMinAval;
+       $confAvalRegular->peso_modificavel = $isPesoModificavel;
+       $confAvalRegular->qtd_avaliacao_variavel = 0;
+
+       $confAvalRegular->save();  
+
+       return redirect()->route('funcionario');
+    }
+
     public function saveConfiguracaoAvalFinal(Request $requisicao){
 
         $peso_regular = $requisicao->input('pesoRegular');

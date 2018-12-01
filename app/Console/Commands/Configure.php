@@ -18,7 +18,8 @@ class Configure extends Command
      */
     protected $signature = 'config:avaliacao 
         {--qtd= : quantidade avaliacoes fixa - 1, variavel - 2}
-        {--final= : Tem final sim - s, nao - n}';
+        {--final= : Tem final sim - s, nao - n}
+        {--base_path : caminho raiz}';
 
     /**
      * The console command description.
@@ -43,14 +44,8 @@ class Configure extends Command
      * @return mixed
      */
     public function handle()
-    {
-<<<<<<< HEAD
-        $qtd = $this->argument('qtd');
-        $temFinal = $this->argument('final') == 's';
-        $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixa' : 'avaliacao_regular_qtd_variavel';  
-        $this->controller($qtd);
-        
-=======
+    {     
+        $this->controller();
         $this->geraViewFuncionario();
     }
 
@@ -59,11 +54,11 @@ class Configure extends Command
      */
     public function geraViewFuncionario()
     {
+        $base_path = $this->option('base_path');   
         $qtd = $this->option('qtd');
         $temFinal = $this->option('final') == 's';
         $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixa' : 'avaliacao_regular_qtd_variavel';
 
->>>>>>> 59a9af7b7fb201c0c36c1b3cd6e80ea441cadc65
         $modelTemplate = str_replace(
             ['{{tipoAvaliacao}}'],
             [$tipoAvaliacao],
@@ -82,7 +77,7 @@ class Configure extends Command
             $modelTemplate
         );
 
-        file_put_contents(resource_path("/views/funcionarioxxxxxxxx.blade.php"), $modelTemplate);
+        file_put_contents($base_path.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'funcionario.blade.php', $modelTemplate);
     }
 
     protected function getStub($type)
@@ -90,23 +85,33 @@ class Configure extends Command
         return file_get_contents(app_path("Console/stubs/$type.stub"));
     }
 
-    protected function controller($name)
+    protected function controller()
     {
+        $base_path = $this->option('base_path');   
+        $temFinal = $this->option('final') == 's';
+
+        if($temFinal){
+            $var = ['{{av_final_first}}' =>'$av_final = ConfAvFinal::first();',
+            '{{av_final_var}}' => "'av_final',"];
+        }else{
+            $var = ['{{av_final_first}}' => '',
+            '{{av_final_var}}' => '' ];
+        }
+        
+
         $controllerTemplate = str_replace(
-           [
-            '{{modelName}}',
-            '{{modelNamePluralLowerCase}}',
-            '{{modelNameSingularLowerCase}}'
-           ],
-           [
-            $name,
-            strtolower(str_plural($name)),
-            strtolower($name)
-           ],
-        $this->getStub('Controller')
+            ['{{av_final_first}}'],
+            [$var['{{av_final_first}}']],
+            $this->getStub('Controller')
         );
 
-      file_put_contents(app_path("/Http/Controllers/{$name}Controller.php"), $controllerTemplate);
+        $controllerTemplate = str_replace(
+            ['{{av_final_var}}'],
+            [$var['{{av_final_var}}']],
+            $controllerTemplate
+        );
+
+      file_put_contents($base_path.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Controllers'.DIRECTORY_SEPARATOR.'funcionarioController.php', $controllerTemplate);
     }
 
 }

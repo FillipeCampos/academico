@@ -17,7 +17,7 @@
 			<!--
 			CSS
 			============================================= -->
-            <link href="{{ asset('css/linearicons.css') }}" rel="stylesheet">=
+            <link href="{{ asset('css/linearicons.css') }}" rel="stylesheet">
             <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
             <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet">        
             <link href="{{ asset('css/nice-select.css') }}" rel="stylesheet">  

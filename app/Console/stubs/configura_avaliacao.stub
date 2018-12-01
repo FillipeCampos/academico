@@ -1,11 +1,7 @@
 @extends('template.app')
 
 @section('titulo')
-<<<<<<< HEAD
-Funcionário
-=======
   Funcionário
->>>>>>> 59a9af7b7fb201c0c36c1b3cd6e80ea441cadc65
 @endsection
 
 @section('nav-menu')
@@ -79,11 +75,6 @@ Funcionário
           Disciplinas
       </div>
       <div class="card-body">
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> 59a9af7b7fb201c0c36c1b3cd6e80ea441cadc65
       @if (count($disciplinas) > 0)
        <div class="row">
         @foreach ($disciplinas as $disciplina)
@@ -125,18 +116,6 @@ Funcionário
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-aval-reg-tab" data-toggle="tab" href="#nav-aval-reg" role="tab" aria-controls="nav-aval-reg" aria-selected="true">Avaliação Regular</a>
-<<<<<<< HEAD
-            @if($conf['final']) <a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a> @endif
-          </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-         @if($conf['regular']) 
-           @include('avaliacao_regular_qtd_variavel')
-         @else
-           @include('avaliacao_regular_qtd_fixo')
-         @endif
-         @if($conf['final']) @include('avaliacao_final_conf') @endif
-=======
             @if($temFinal)) <a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a> @endif
           </div>
         </nav>
@@ -144,7 +123,6 @@ Funcionário
 
            @include('{{tipoAvaliacao}}')
            {{includeAvaliacaoFinal}}
->>>>>>> 59a9af7b7fb201c0c36c1b3cd6e80ea441cadc65
         </div>
       </div>
     </div>

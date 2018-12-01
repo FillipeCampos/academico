@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="nav-aval-reg" role="tabpanel" aria-labelledby="nav-aval-reg-tab">
-              <form action="{{route('saveAvalRegularConf')}}" method="POST">
+              <form action="{{route('saveAvalRegularConfFixa')}}" method="POST">
                 {{ csrf_field()  }}
                 <div class="row">
                   <div class="form-group col-sm-4">

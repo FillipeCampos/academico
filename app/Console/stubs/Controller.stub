@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
+use App\ConfAvRegular;
+use App\ConfAvFinal;
+use App\Disciplina;
+use App\Usuario;
 
 class funcionarioController extends Controller
 {
     public static function index(){
         $av_regular = ConfAvRegular::first();
-        $av_final = ConfAvFinal::first();
+        {{av_final_first}}
         $disciplinas = Disciplina::all()->sortBy('nome');
         $usuarios = Usuario::all()->sortBy('tipo');
-        return view('funcionario',compact('av_regular','disciplinas','av_final','usuarios','conf'));
+        return view('funcionario',compact('av_regular','disciplinas',{{av_final_var}}'usuarios','conf'));
     }
 
     public function saveConfiguracaoAvalRegular(Request $requisicao)
@@ -27,6 +31,23 @@ class funcionarioController extends Controller
        $confAvalRegular->qtd_provas_min = $qtdMinAval;
        $confAvalRegular->peso_modificavel = $isPesoModificavel;
        $confAvalRegular->qtd_avaliacao_variavel = $qtdAvaliacao;
+
+       $confAvalRegular->save();  
+
+       return redirect()->route('funcionario');
+    }
+
+    public function saveConfiguracaoAvalRegularFixa(Request $requisicao)
+    {
+           
+       $qtdMaxAval = $qtdMinAval = $requisicao->input('qtdMinAvaliacao');
+       $isPesoModificavel = $requisicao->input('modificaPeso');
+       
+       $confAvalRegular = ConfAvRegular::first();
+       $confAvalRegular->qtd_provas_max = $qtdMaxAval;
+       $confAvalRegular->qtd_provas_min = $qtdMinAval;
+       $confAvalRegular->peso_modificavel = $isPesoModificavel;
+       $confAvalRegular->qtd_avaliacao_variavel = 0;
 
        $confAvalRegular->save();  
 

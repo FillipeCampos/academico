@@ -61,7 +61,7 @@ class GenerateSystem extends Command
         $final = ($has_final == 'Sim') ? 's' : 'n'; 
 
         $this->call('config:avaliacao', [
-            '--qtd' => $qtd, '--final' => $final
+            '--qtd' => $qtd, '--final' => $final, '--base_path' => $dst
         ]);
     }
 

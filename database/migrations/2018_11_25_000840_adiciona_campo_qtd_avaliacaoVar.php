@@ -13,7 +13,7 @@ class AdicionaCampoQtdAvaliacaoVar extends Migration
      */
     public function up()
     {
-        Schema::table('confAvaliacaoregular', function($table) { 
+        Schema::table('confAvaliacaoRegular', function($table) { 
             $table->boolean('qtd_avaliacao_variavel');  
         });
     }
@@ -25,9 +25,8 @@ class AdicionaCampoQtdAvaliacaoVar extends Migration
      */
     public function down()
     {
-        Schema::table('confAvaliacaoregular', function($table) { 
+        Schema::table('confAvaliacaoRegular', function($table) { 
             $table->dropColumn('qtd_avaliacao_variavel');
         });    
-      //  Schema::dropIfExists('confAvaliacaoregular');      
     }
 }
