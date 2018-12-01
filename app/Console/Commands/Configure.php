@@ -57,7 +57,9 @@ class Configure extends Command
         $base_path = $this->option('base_path');   
         $qtd = $this->option('qtd');
         $temFinal = $this->option('final') == 's';
-        $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixa' : 'avaliacao_regular_qtd_variavel';
+        $tipoAvaliacao = ($qtd == QTD_FIXA) ? 'avaliacao_regular_qtd_fixo' : 'avaliacao_regular_qtd_variavel';
+
+        $nav_tab_final = '<a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a>';
 
         $modelTemplate = str_replace(
             ['{{tipoAvaliacao}}'],
@@ -69,6 +71,11 @@ class Configure extends Command
 
         if($temFinal) {
             $includeAvaliacaoFinal = "@include('avaliacao_final_conf')";
+            $modelTemplate = str_replace(
+                ['{{nav-aval-fin-tab}}'],
+                [$nav_tab_final],
+                $modelTemplate
+            );
         }
 
         $modelTemplate = str_replace(
@@ -77,6 +84,12 @@ class Configure extends Command
             $modelTemplate
         );
 
+        $modelTemplate = str_replace(
+            ['{{nav-aval-fin-tab}}'],
+            [''],
+            $modelTemplate
+        );
+        
         file_put_contents($base_path.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'funcionario.blade.php', $modelTemplate);
     }
 

@@ -81,7 +81,7 @@
           <div class="col-sm-4 my-2">
             <div class="card border-primary">
               <div class="card-body">
-                <h4 class="card-title">{{$disciplina->p}}</h4>
+                <h4 class="card-title">{{$disciplina->nome}}</h4>
                 <div class="row">
                   <div class="col-sm-5">
                       <button type="button" class="btn btn-sm btn-primary">Adicionar Turma</button>
@@ -116,7 +116,7 @@
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-aval-reg-tab" data-toggle="tab" href="#nav-aval-reg" role="tab" aria-controls="nav-aval-reg" aria-selected="true">Avaliação Regular</a>
-            @if($temFinal)) <a class="nav-item nav-link" id="nav-aval-fin-tab" data-toggle="tab" href="#nav-aval-fin" role="tab" aria-controls="nav-aval-fin" aria-selected="false">Avaliação Final</a> @endif
+            {{nav-aval-fin-tab}}
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">

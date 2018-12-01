@@ -82,7 +82,7 @@ Funcionário
           <div class="col-sm-4 my-2">
             <div class="card border-primary">
               <div class="card-body">
-                <h4 class="card-title">{{$disciplina->p}}</h4>
+                <h4 class="card-title">{{$disciplina->nome}}</h4>
                 <div class="row">
                   <div class="col-sm-5">
                       <button type="button" class="btn btn-sm btn-primary">Adicionar Turma</button>
